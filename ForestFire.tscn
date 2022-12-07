@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://RootControl.gd" type="Script" id=1]
 [ext_resource path="res://Sprite1.gd" type="Script" id=2]
 [ext_resource path="res://Sprite2.gd" type="Script" id=3]
 [ext_resource path="res://ForestFire.tres" type="Material" id=4]
 [ext_resource path="res://TextureRectFinalDisplay.gd" type="Script" id=5]
+[ext_resource path="res://FPS.gd" type="Script" id=6]
 
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Viewport2")
@@ -31,6 +32,7 @@ transparent_bg = true
 
 [node name="Sprite2" type="Sprite" parent="Viewport2"]
 material = ExtResource( 4 )
+position = Vector2( 0, -40 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
@@ -41,3 +43,30 @@ margin_right = 40.0
 margin_bottom = 40.0
 texture = SubResource( 2 )
 script = ExtResource( 5 )
+
+[node name="UIContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIContainer"]
+margin_right = 592.0
+margin_bottom = 40.0
+
+[node name="TreeProbLabel" type="Label" parent="UIContainer/HBoxContainer"]
+margin_top = 13.0
+margin_right = 89.0
+margin_bottom = 27.0
+text = "Tree Prob [%]:"
+
+[node name="TreeProbInput" type="SpinBox" parent="UIContainer/HBoxContainer"]
+margin_left = 93.0
+margin_right = 167.0
+margin_bottom = 40.0
+
+[node name="FPS" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 171.0
+margin_top = 13.0
+margin_right = 171.0
+margin_bottom = 27.0
+script = ExtResource( 6 )

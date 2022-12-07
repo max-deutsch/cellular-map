@@ -2,9 +2,8 @@ shader_type canvas_item;
 
 uniform bool mouse_pressed = false;
 uniform vec2 mouse_position = vec2(0., 0.);
-
-const float fireProbability = 0.0;
-const float treeProbability = 0.01;
+uniform float fireProbability;
+uniform float treeProbability;
 
 const vec4 empty = vec4(0.0, 0.0, 0.0, 1.0);
 const vec4 fire = vec4(1.0, 0.0, 0.0, 1.0);
