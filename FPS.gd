@@ -1,7 +1,7 @@
 extends Label
 
 func set_counter():
-	self.set_text("FPS: " + str(Engine.get_frames_per_second()));
+	self.set_text(str(Engine.get_frames_per_second()));
 
 func _ready():
 	self.set_counter()

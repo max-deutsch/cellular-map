@@ -6,12 +6,17 @@ onready var TreeProbInput = $"/root/RootControl/UIContainer/HBoxContainer/TreePr
 onready var FireProbInput = $"/root/RootControl/UIContainer/HBoxContainer/FireProbInput"
 onready var TargetFPSInput = $"/root/RootControl/UIContainer/HBoxContainer/TargetFPSInput"
 onready var Time1Step = $"/root/RootControl/UIContainer/HBoxContainer/Time1Step"
+onready var Time10Step = $"/root/RootControl/UIContainer/HBoxContainer/Time10Step"
+onready var Time100Step = $"/root/RootControl/UIContainer/HBoxContainer/Time100Step"
+onready var Time1000Step = $"/root/RootControl/UIContainer/HBoxContainer/Time1000Step"
+onready var Time10000Step = $"/root/RootControl/UIContainer/HBoxContainer/Time10000Step"
 
-var ms1step = -1
-var ms10steps = -1
-var ms100steps = -1
-var ms1000steps = -1
-var ms10000steps = -1
+var ms1step = 0
+var ms10step = 0
+var ms100step = 0
+var ms1000step = 0
+var ms10000step = 0
+var frameCount = 0
 
 func _ready():
 	TreeProbInput.connect("value_changed", self, "on_tree_prob_change")
@@ -51,6 +56,26 @@ func _input(event: InputEvent):
 
 func _process(delta):
 	ms1step = delta * 1000
+	++frameCount
+	if frameCount % 10 == 0:
+		ms10step = 0
+	ms10step += delta * 1000
+	
+	if frameCount % 100 == 0:
+		ms100step = 0
+	ms100step += delta * 1000
+	
+	if frameCount % 1000 == 0:
+		ms1000step = 0
+	ms1000step += delta * 1000
+	
+	if frameCount % 10000 == 0:
+		ms10000step = 0
+	ms10000step += delta * 1000
 	
 func _physics_process(delta):
-	Time1Step.set_text("1 Step: %fms" % ms1step)
+	Time1Step.set_text("%fms" % ms1step)
+	Time10Step.set_text("%fms" % ms10step)
+	Time100Step.set_text("%fms" % ms100step)
+	Time1000Step.set_text("%fms" % ms1000step)
+	Time10000Step.set_text("%fms" % ms10000step)

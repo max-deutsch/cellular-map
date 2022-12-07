@@ -94,20 +94,75 @@ margin_right = 167.0
 margin_bottom = 80.0
 max_value = 10000.0
 
-[node name="FPS" type="Label" parent="UIContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UIContainer/HBoxContainer"]
 margin_top = 84.0
 margin_right = 89.0
 margin_bottom = 98.0
-script = ExtResource( 6 )
+text = "FPS:"
 
-[node name="Label" type="Label" parent="UIContainer/HBoxContainer"]
+[node name="FPS" type="Label" parent="UIContainer/HBoxContainer"]
 margin_left = 93.0
 margin_top = 84.0
 margin_right = 167.0
 margin_bottom = 98.0
+script = ExtResource( 6 )
 
-[node name="Time1Step" type="Label" parent="UIContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="UIContainer/HBoxContainer"]
 margin_top = 102.0
 margin_right = 89.0
 margin_bottom = 116.0
-text = "1 step"
+text = "1 Step"
+
+[node name="Time1Step" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 93.0
+margin_top = 102.0
+margin_right = 167.0
+margin_bottom = 116.0
+
+[node name="Label3" type="Label" parent="UIContainer/HBoxContainer"]
+margin_top = 120.0
+margin_right = 89.0
+margin_bottom = 134.0
+text = "10 Steps:"
+
+[node name="Time10Step" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 93.0
+margin_top = 120.0
+margin_right = 167.0
+margin_bottom = 134.0
+
+[node name="Label4" type="Label" parent="UIContainer/HBoxContainer"]
+margin_top = 138.0
+margin_right = 89.0
+margin_bottom = 152.0
+text = "100 Steps:"
+
+[node name="Time100Step" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 93.0
+margin_top = 138.0
+margin_right = 167.0
+margin_bottom = 152.0
+
+[node name="Label5" type="Label" parent="UIContainer/HBoxContainer"]
+margin_top = 156.0
+margin_right = 89.0
+margin_bottom = 170.0
+text = "1000 Steps:"
+
+[node name="Time1000Step" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 93.0
+margin_top = 156.0
+margin_right = 167.0
+margin_bottom = 170.0
+
+[node name="Label6" type="Label" parent="UIContainer/HBoxContainer"]
+margin_top = 174.0
+margin_right = 89.0
+margin_bottom = 188.0
+text = "10000 Steps:"
+
+[node name="Time10000Step" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 93.0
+margin_top = 174.0
+margin_right = 167.0
+margin_bottom = 188.0
