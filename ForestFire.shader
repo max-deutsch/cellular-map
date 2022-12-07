@@ -1,7 +1,10 @@
 shader_type canvas_item;
 
+uniform bool mouse_pressed = false;
+uniform vec2 mouse_position = vec2(0., 0.);
+
 const float fireProbability = 0.0;
-const float treeProbability = 0.0;
+const float treeProbability = 0.01;
 
 const vec4 empty = vec4(0.0, 0.0, 0.0, 1.0);
 const vec4 fire = vec4(1.0, 0.0, 0.0, 1.0);
@@ -36,24 +39,28 @@ void fragment() {
 		
 	vec4 result = cell;	
 	
-	if (cell.g > 0.0) {
-		// COLOR = tree; // TODO remove
-		int neighbourFireCount = 
-			(texture(TEXTURE, SCREEN_UV + top_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-			(texture(TEXTURE, SCREEN_UV + top_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-			(texture(TEXTURE, SCREEN_UV + top_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-			(texture(TEXTURE, SCREEN_UV + center_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-			(texture(TEXTURE, SCREEN_UV + center_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-			(texture(TEXTURE, SCREEN_UV + bottom_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-			(texture(TEXTURE, SCREEN_UV + bottom_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-			(texture(TEXTURE, SCREEN_UV + bottom_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0);
-		
-		// A cell containing a tree will catch on fire, if at least one neighbor is on fire
-		// A cell containing a tree without a neighbor on fire will catch fire with a probability
-		if(neighbourFireCount > 0) {
-			result = fire;
-		} else if(random(uv + TIME) < fireProbability) {
-			result = fire;
+	if (cell.g > 0.0) {		
+		vec2 distance_to_click = (uv / sz) - mouse_position;
+		if(mouse_pressed && length(distance_to_click) < 1.0) {
+			result = fire;			
+		} else {		
+			int neighbourFireCount = 
+				(texture(TEXTURE, SCREEN_UV + top_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+				(texture(TEXTURE, SCREEN_UV + top_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+				(texture(TEXTURE, SCREEN_UV + top_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+				(texture(TEXTURE, SCREEN_UV + center_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+				(texture(TEXTURE, SCREEN_UV + center_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+				(texture(TEXTURE, SCREEN_UV + bottom_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+				(texture(TEXTURE, SCREEN_UV + bottom_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+				(texture(TEXTURE, SCREEN_UV + bottom_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0);
+			
+			// A cell containing a tree will catch on fire, if at least one neighbor is on fire
+			// A cell containing a tree without a neighbor on fire will catch fire with a probability
+			if(neighbourFireCount > 0) {
+				result = fire;
+			} else if(random(uv + TIME) < fireProbability) {
+				result = fire;
+			}
 		}
 	} else if (cell.r > 0.0) {
 		// COLOR = fire; // TODO remove

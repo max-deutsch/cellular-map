@@ -4,3 +4,5 @@
 
 [resource]
 shader = ExtResource( 1 )
+shader_param/mouse_pressed = false
+shader_param/mouse_position = Vector2( 0, 0 )
