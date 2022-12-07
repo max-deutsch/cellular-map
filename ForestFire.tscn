@@ -107,3 +107,14 @@ margin_top = 13.0
 margin_right = 505.0
 margin_bottom = 27.0
 script = ExtResource( 6 )
+
+[node name="VSeparator3" type="VSeparator" parent="UIContainer/HBoxContainer"]
+margin_left = 509.0
+margin_right = 513.0
+margin_bottom = 40.0
+
+[node name="Time1Step" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 517.0
+margin_top = 13.0
+margin_right = 517.0
+margin_bottom = 27.0

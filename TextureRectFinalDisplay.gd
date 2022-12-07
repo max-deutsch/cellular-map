@@ -5,6 +5,13 @@ onready var Sprite2 = $"/root/RootControl/Viewport2/Sprite2"
 onready var TreeProbInput = $"/root/RootControl/UIContainer/HBoxContainer/TreeProbInput"
 onready var FireProbInput = $"/root/RootControl/UIContainer/HBoxContainer/FireProbInput"
 onready var TargetFPSInput = $"/root/RootControl/UIContainer/HBoxContainer/TargetFPSInput"
+onready var Time1Step = $"/root/RootControl/UIContainer/HBoxContainer/Time1Step"
+
+var ms1step = -1
+var ms10steps = -1
+var ms100steps = -1
+var ms1000steps = -1
+var ms10000steps = -1
 
 func _ready():
 	TreeProbInput.connect("value_changed", self, "on_tree_prob_change")
@@ -42,3 +49,8 @@ func _input(event: InputEvent):
 
 		Sprite1.material.set_shader_param("mouse_position", pos)
 
+func _process(delta):
+	ms1step = delta * 1000
+	
+func _physics_process(delta):
+	Time1Step.set_text("1 Step: %fms" % ms1step)
