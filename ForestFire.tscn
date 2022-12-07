@@ -88,9 +88,22 @@ margin_left = 346.0
 margin_right = 350.0
 margin_bottom = 40.0
 
-[node name="FPS" type="Label" parent="UIContainer/HBoxContainer"]
+[node name="TargetFPSLabel" type="Label" parent="UIContainer/HBoxContainer"]
 margin_left = 354.0
 margin_top = 13.0
-margin_right = 354.0
+margin_right = 423.0
+margin_bottom = 27.0
+text = "Target FPS:"
+
+[node name="TargetFPSInput" type="SpinBox" parent="UIContainer/HBoxContainer"]
+margin_left = 427.0
+margin_right = 501.0
+margin_bottom = 40.0
+max_value = 10000.0
+
+[node name="FPS" type="Label" parent="UIContainer/HBoxContainer"]
+margin_left = 505.0
+margin_top = 13.0
+margin_right = 505.0
 margin_bottom = 27.0
 script = ExtResource( 6 )
