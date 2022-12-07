@@ -16,6 +16,13 @@ var ms10step = 0
 var ms100step = 0
 var ms1000step = 0
 var ms10000step = 0
+
+var ms1step_display = -1
+var ms10step_display = -1
+var ms100step_display = -1
+var ms1000step_display = -1
+var ms10000step_display = -1
+
 var frameCount = 0
 
 func _ready():
@@ -37,6 +44,11 @@ func on_fire_prob_change(value):
 	
 func on_target_fps_change(value):
 	Engine.set_target_fps(value)
+	ms1step_display = -1
+	ms10step_display = -1
+	ms100step_display = -1
+	ms1000step_display = -1
+	ms10000step_display = -1
 
 func _input(event: InputEvent):
 	if not event is InputEventMouse:
@@ -56,26 +68,31 @@ func _input(event: InputEvent):
 
 func _process(delta):
 	ms1step = delta * 1000
-	++frameCount
+	ms1step_display = ms1step
+	frameCount += 1
 	if frameCount % 10 == 0:
+		ms10step_display = ms10step
 		ms10step = 0
 	ms10step += delta * 1000
 	
 	if frameCount % 100 == 0:
+		ms100step_display = ms100step
 		ms100step = 0
 	ms100step += delta * 1000
 	
 	if frameCount % 1000 == 0:
+		ms1000step_display = ms1000step
 		ms1000step = 0
 	ms1000step += delta * 1000
 	
 	if frameCount % 10000 == 0:
+		ms10000step_display = ms10000step
 		ms10000step = 0
 	ms10000step += delta * 1000
 	
 func _physics_process(delta):
-	Time1Step.set_text("%fms" % ms1step)
-	Time10Step.set_text("%fms" % ms10step)
-	Time100Step.set_text("%fms" % ms100step)
-	Time1000Step.set_text("%fms" % ms1000step)
-	Time10000Step.set_text("%fms" % ms10000step)
+	Time1Step.set_text(str(ms1step_display))
+	Time10Step.set_text(str(ms10step_display))
+	Time100Step.set_text(str(ms100step_display))
+	Time1000Step.set_text(str(ms1000step_display))
+	Time10000Step.set_text(str(ms10000step_display))
