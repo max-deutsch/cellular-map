@@ -37,22 +37,29 @@ void fragment() {
 		cell = tree;
 	}
 		
-	vec4 result = cell;	
+	vec4 result = cell;
 	
-	if (cell.g > 0.0) {		
+	if (cell.g > 0.0) {
 		vec2 distance_to_click = (uv / sz) - mouse_position;
 		if(mouse_pressed && length(distance_to_click) < 1.0) {
 			result = fire;			
-		} else {		
+		} else {
+			// Moore Neighbourhood
+//			int neighbourFireCount = 
+//				(texture(TEXTURE, SCREEN_UV + top_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+//				(texture(TEXTURE, SCREEN_UV + top_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+//				(texture(TEXTURE, SCREEN_UV + top_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+//				(texture(TEXTURE, SCREEN_UV + center_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+//				(texture(TEXTURE, SCREEN_UV + center_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+//				(texture(TEXTURE, SCREEN_UV + bottom_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+//				(texture(TEXTURE, SCREEN_UV + bottom_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+//				(texture(TEXTURE, SCREEN_UV + bottom_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0);
+			// Von Neumann neighbourhood
 			int neighbourFireCount = 
-				(texture(TEXTURE, SCREEN_UV + top_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
 				(texture(TEXTURE, SCREEN_UV + top_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-				(texture(TEXTURE, SCREEN_UV + top_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
 				(texture(TEXTURE, SCREEN_UV + center_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
 				(texture(TEXTURE, SCREEN_UV + center_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-				(texture(TEXTURE, SCREEN_UV + bottom_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-				(texture(TEXTURE, SCREEN_UV + bottom_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
-				(texture(TEXTURE, SCREEN_UV + bottom_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0);
+				(texture(TEXTURE, SCREEN_UV + bottom_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0);
 			
 			// A cell containing a tree will catch on fire, if at least one neighbor is on fire
 			// A cell containing a tree without a neighbor on fire will catch fire with a probability
