@@ -63,6 +63,7 @@ func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if valid_mouse_pos:
 			Sprite1.material.set_shader_param("mouse_pressed", event.pressed)
+			Sprite1.material.set_shader_param("mouse_button_index", event.button_index)
 
 	if event is InputEventMouseMotion:
 		var pos = event.position		
