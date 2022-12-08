@@ -28,7 +28,7 @@ const vec4 epsilon = vec4(0.001);
 
 // https://godotshaders.com/snippet/random-value/
 float random (vec2 uv) {
-	uv = uv + sin(TIME);
+	uv =  sin(uv + TIME);
     return fract(sin(dot(uv.xy,
         vec2(12.9898,78.233))) * 43758.5453123);
 }
