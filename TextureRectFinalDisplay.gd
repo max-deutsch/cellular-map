@@ -27,6 +27,8 @@ var ms10000step_display = -1
 
 var frameCount = 0
 var valid_mouse_pos: bool
+var mouse_pos: Vector2
+var click_threshold: float
 
 func _ready():
 	ClickThresholdInput.connect("value_changed", self, "on_click_threshold_change")
@@ -34,12 +36,13 @@ func _ready():
 	FireProbInput.connect("value_changed", self, "on_fire_prob_change")
 	TargetFPSInput.connect("value_changed", self, "on_target_fps_change")
 	
-	ClickThresholdInput.set_value(1.0);
+	ClickThresholdInput.set_value(5.0);
 	TreeProbInput.set_value(0.0);
 	FireProbInput.set_value(0.0);
 	TargetFPSInput.set_value(0.0);
 
 func on_click_threshold_change(value):
+	click_threshold = value
 	Sprite1.material.set_shader_param("click_threshold", value)
 
 func on_tree_prob_change(value):
@@ -72,10 +75,10 @@ func _input(event: InputEvent):
 			Sprite1.material.set_shader_param("mouse_button_index", event.button_index)
 
 	if event is InputEventMouseMotion:
-		var pos = event.position		
+		mouse_pos = event.position		
 		var ui_rect: Rect2 = UIContainer.get_rect()
-		valid_mouse_pos  = not ui_rect.has_point(pos)
-		Sprite1.material.set_shader_param("mouse_position", pos)
+		valid_mouse_pos  = not ui_rect.has_point(mouse_pos)
+		Sprite1.material.set_shader_param("mouse_position", mouse_pos)
 
 func _process(delta):
 	ms1step = delta * 1000
@@ -107,3 +110,10 @@ func _physics_process(_delta):
 	Time100Step.set_text(str(ms100step_display))
 	Time1000Step.set_text(str(ms1000step_display))
 	Time10000Step.set_text(str(ms10000step_display))
+	update()
+	
+		
+func _draw():
+	if valid_mouse_pos:
+		draw_circle(mouse_pos, click_threshold, Color(1.0, 1.0, 1.0, 0.5))
+	
