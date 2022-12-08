@@ -5,6 +5,7 @@ uniform int mouse_button_index;
 uniform vec2 mouse_position = vec2(0., 0.);
 uniform float fireProbability;
 uniform float treeProbability;
+uniform float click_threshold = 1.0;
 
 const int LEFT_CLICK = 1;
 const int RIGHT_CLICK = 2;
@@ -44,7 +45,7 @@ void fragment() {
 		
 	vec4 result = cell;
 	
-	if(mouse_pressed && length((uv / sz) - mouse_position) < 1.0) {
+	if(mouse_pressed && length((uv / sz) - mouse_position) < click_threshold) {
 		if (mouse_button_index == LEFT_CLICK) {
 			result = fire;
 		} else if(mouse_button_index == RIGHT_CLICK) {
