@@ -70,6 +70,11 @@ func _input(event: InputEvent):
 		return
 
 	if event is InputEventMouseButton:
+		if event.button_index == 4:
+			ClickThresholdInput.set_value(click_threshold - 1);
+		elif event.button_index == 5:
+			ClickThresholdInput.set_value(click_threshold + 1);
+			
 		if valid_mouse_pos:
 			Sprite1.material.set_shader_param("mouse_pressed", event.pressed)
 			Sprite1.material.set_shader_param("mouse_button_index", event.button_index)
