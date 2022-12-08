@@ -29,6 +29,37 @@ TextureRectFinalDisplay's Anchor are set to fill the window
 
 A ShaderMaterial is set to both Sprites
 
+The start color must be transparent. 
+
 # Shader
 shader type canvas_item
 https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/canvas_item_shader.html#doc-canvas-item-shader
+
+
+const vec4 top_left_offset = vec2(-1.0, -1.0);
+const vec4 top_middle_offset = vec2(0.0, -1.0);
+const vec4 top_right_offset = vec2(1.0, -1.0);
+const vec4 center_left_offset = vec2(-1.0, 0.0);
+const vec4 center_right_offset = vec2(1.0, 0.0);
+const vec4 bottom_left_offset = vec2(-1.0, 1.0);
+const vec4 bottom_middle_offset = vec2(0.0, 1.0);
+const vec4 bottom_right_offset = vec2(1.0, 1.0);
+
+# Randomness
+
+// https://stackoverflow.com/questions/5149544/can-i-generate-a-random-number-inside-a-pixel-shader
+float random( vec2 p )
+{
+    vec2 K1 = vec2(
+        23.14069263277926, // e^pi (Gelfond's constant)
+         2.665144142690225 // 2^sqrt(2) (Gelfond-Schneider constant)
+    );
+    return fract( cos( dot(p,K1) ) * 12345.6789 );
+}
+
+(texture(TEXTURE, SCREEN_UV + top_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+(texture(TEXTURE, SCREEN_UV + center_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+(texture(TEXTURE, SCREEN_UV + center_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+(texture(TEXTURE, SCREEN_UV + bottom_left_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+(texture(TEXTURE, SCREEN_UV + bottom_middle_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0) +
+(texture(TEXTURE, SCREEN_UV + bottom_right_offset * SCREEN_PIXEL_SIZE).r > 0.0 ? 1 : 0);

@@ -47,8 +47,9 @@ texture = SubResource( 2 )
 script = ExtResource( 5 )
 
 [node name="UIContainer" type="Panel" parent="."]
-margin_right = 250.0
-margin_bottom = 200.0
+margin_right = 216.0
+margin_bottom = 204.0
+input_pass_on_modal_close_click = false
 custom_styles/panel = SubResource( 3 )
 
 [node name="HBoxContainer" type="GridContainer" parent="UIContainer"]

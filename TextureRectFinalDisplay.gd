@@ -2,6 +2,7 @@ extends TextureRect
 
 onready var Sprite1 = $"/root/RootControl/Viewport1/Sprite1"
 onready var Sprite2 = $"/root/RootControl/Viewport2/Sprite2"
+onready var UIContainer = $"/root/RootControl/UIContainer"
 onready var TreeProbInput = $"/root/RootControl/UIContainer/HBoxContainer/TreeProbInput"
 onready var FireProbInput = $"/root/RootControl/UIContainer/HBoxContainer/FireProbInput"
 onready var TargetFPSInput = $"/root/RootControl/UIContainer/HBoxContainer/TargetFPSInput"
@@ -24,6 +25,7 @@ var ms1000step_display = -1
 var ms10000step_display = -1
 
 var frameCount = 0
+var valid_mouse_pos: bool
 
 func _ready():
 	TreeProbInput.connect("value_changed", self, "on_tree_prob_change")
@@ -59,11 +61,14 @@ func _input(event: InputEvent):
 		return
 
 	if event is InputEventMouseButton:
-		Sprite1.material.set_shader_param("mouse_pressed", event.pressed)
+		if valid_mouse_pos:
+			Sprite1.material.set_shader_param("mouse_pressed", event.pressed)
 
 	if event is InputEventMouseMotion:
-		var pos = event.position
-
+		var pos = event.position		
+		var ui_rect: Rect2 = UIContainer.get_rect()
+		valid_mouse_pos  = not ui_rect.has_point(pos)
+#		print("%s %s %s" % [str(pos), str(ui_rect), str(has_point)])		
 		Sprite1.material.set_shader_param("mouse_position", pos)
 
 func _process(delta):
