@@ -22,6 +22,7 @@ const vec4 epsilon = vec4(0.001);
 
 // https://godotshaders.com/snippet/random-value/
 float random (vec2 uv) {
+	uv = uv + sin(TIME);
     return fract(sin(dot(uv.xy,
         vec2(12.9898,78.233))) * 43758.5453123);
 }
@@ -41,7 +42,7 @@ void fragment() {
 	if (cell.g > 0.0) {
 		vec2 distance_to_click = (uv / sz) - mouse_position;
 		if(mouse_pressed && length(distance_to_click) < 1.0) {
-			result = fire;			
+			result = fire;
 		} else {
 			// Moore Neighbourhood
 //			int neighbourFireCount = 
@@ -64,15 +65,14 @@ void fragment() {
 			// A cell containing a tree without a neighbor on fire will catch fire with a probability
 			if(neighbourFireCount > 0) {
 				result = fire;
-			} else if(random(uv + TIME) < fireProbability) {
+			} else if(random(uv) < fireProbability) {
 				result = fire;
 			}
 		}
 	} else if (cell.r > 0.0) {
-		// COLOR = fire; // TODO remove
 		// A cell with a burning tree will become empty
 		result = empty;
-	} else if(random(uv + TIME) < treeProbability) {
+	} else if(random(uv) < treeProbability) {
 		// An empty cell will grow a new tree with a probability
 		result = tree;
 	}

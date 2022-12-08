@@ -32,7 +32,7 @@ func _ready():
 	FireProbInput.connect("value_changed", self, "on_fire_prob_change")
 	TargetFPSInput.connect("value_changed", self, "on_target_fps_change")
 	
-	TreeProbInput.set_value(0.5);
+	TreeProbInput.set_value(0.0);
 	FireProbInput.set_value(0.0);
 	TargetFPSInput.set_value(0.0);
 
@@ -68,7 +68,6 @@ func _input(event: InputEvent):
 		var pos = event.position		
 		var ui_rect: Rect2 = UIContainer.get_rect()
 		valid_mouse_pos  = not ui_rect.has_point(pos)
-#		print("%s %s %s" % [str(pos), str(ui_rect), str(has_point)])		
 		Sprite1.material.set_shader_param("mouse_position", pos)
 
 func _process(delta):
