@@ -11,6 +11,9 @@ config_version=4
 [application]
 
 config/name="Forest-fire"
+config/description="Forest Fire with Cellular Automat. 
+Deutsch Maximilian
+ai21m024@technikum-wien"
 run/main_scene="res://ForestFire.tscn"
 config/icon="res://icon.png"
 
