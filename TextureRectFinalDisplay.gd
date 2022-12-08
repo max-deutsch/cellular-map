@@ -94,7 +94,7 @@ func _process(delta):
 		ms10000step = 0
 	ms10000step += delta * 1000
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	Time1Step.set_text(str(ms1step_display))
 	Time10Step.set_text(str(ms10step_display))
 	Time100Step.set_text(str(ms100step_display))

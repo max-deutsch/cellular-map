@@ -33,8 +33,12 @@ void fragment() {
 	vec2 sz = SCREEN_PIXEL_SIZE;
 		
 	vec4 cell = texture(TEXTURE, SCREEN_UV);
+	bool first_pass;
 	if(cell.a < 1.0) {
 		cell = tree;
+		first_pass = true;
+	} else {
+		first_pass = false;
 	}
 		
 	vec4 result = cell;
@@ -77,5 +81,27 @@ void fragment() {
 		result = tree;
 	}
 	
-	COLOR = result;
+	if(cell.a < 1.0) {
+		
+	} else {
+		
+	}
+//	COLOR = texture(TEXTURE, vec2(0.0, 0.0) + vec2(-1.0, -1.0) * SCREEN_PIXEL_SIZE);
+	
+//	if (first_pass) {
+		COLOR = result;
+//	} else {
+//		COLOR = texture(TEXTURE, vec2(-10.0, -10.0));
+		// COLOR = vec4(0.0, 0.0, 1.0, 1.0);
+		
+//		vec4 right = texture(TEXTURE, SCREEN_UV + center_right_offset * SCREEN_PIXEL_SIZE);
+//		if(right.r < 1.0) {
+//			COLOR = vec4(0.0, 0.0, 1.0, 1.0);
+//		} else {
+//			COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+//		}
+		//COLOR = vec4(1.0-right.r, 1.0-right.g, right.b, 1.0);
+		// COLOR = vec4(0.0, 0.0, 1.0, 1.0);
+//	}
+	
 }
