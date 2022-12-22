@@ -1,17 +1,18 @@
 extends TextureRect
 
-onready var Sprite1 = $"/root/RootControl/Viewport1/Sprite1"
-onready var Sprite2 = $"/root/RootControl/Viewport2/Sprite2"
-onready var UIContainer = $"/root/RootControl/UIContainer"
-onready var ClickThresholdInput = $"/root/RootControl/UIContainer/HBoxContainer/ClickThresholdInput"
-onready var TreeProbInput = $"/root/RootControl/UIContainer/HBoxContainer/TreeProbInput"
-onready var FireProbInput = $"/root/RootControl/UIContainer/HBoxContainer/FireProbInput"
-onready var TargetFPSInput = $"/root/RootControl/UIContainer/HBoxContainer/TargetFPSInput"
-onready var Time1Step = $"/root/RootControl/UIContainer/HBoxContainer/Time1Step"
-onready var Time10Step = $"/root/RootControl/UIContainer/HBoxContainer/Time10Step"
-onready var Time100Step = $"/root/RootControl/UIContainer/HBoxContainer/Time100Step"
-onready var Time1000Step = $"/root/RootControl/UIContainer/HBoxContainer/Time1000Step"
-onready var Time10000Step = $"/root/RootControl/UIContainer/HBoxContainer/Time10000Step"
+onready var Sprite1 = $"../Viewport1/Sprite1"
+onready var Sprite2 = $"../Viewport2/Sprite2"
+onready var UIContainer = $"../UIContainer"
+onready var ClickThresholdInput = $"../UIContainer/HBoxContainer/ClickThresholdInput"
+onready var TreeProbInput = $"../UIContainer/HBoxContainer/TreeProbInput"
+onready var FireProbInput = $"../UIContainer/HBoxContainer/FireProbInput"
+onready var TargetFPSInput = $"../UIContainer/HBoxContainer/TargetFPSInput"
+onready var Time1Step = $"../UIContainer/HBoxContainer/Time1Step"
+onready var Time10Step = $"../UIContainer/HBoxContainer/Time10Step"
+onready var Time100Step = $"../UIContainer/HBoxContainer/Time100Step"
+onready var Time1000Step = $"../UIContainer/HBoxContainer/Time1000Step"
+onready var Time10000Step = $"../UIContainer/HBoxContainer/Time10000Step"
+onready var CreateTileMapButton = $"../UIContainer/HBoxContainer/CreateTileMap"
 
 var ms1step = 0
 var ms10step = 0
@@ -35,6 +36,7 @@ func _ready():
 	TreeProbInput.connect("value_changed", self, "on_tree_prob_change")
 	FireProbInput.connect("value_changed", self, "on_fire_prob_change")
 	TargetFPSInput.connect("value_changed", self, "on_target_fps_change")
+	CreateTileMapButton.connect("pressed", self, "_create_tile_map_pressed")
 	
 	ClickThresholdInput.set_value(5.0);
 	TreeProbInput.set_value(0.0);
@@ -122,3 +124,9 @@ func _draw():
 	if valid_mouse_pos:
 		draw_circle(mouse_pos, click_threshold, Color(1.0, 1.0, 1.0, 0.5))
 	
+func _create_tile_map_pressed():
+	var tileMapPopup = Popup
+	print("create_tile_map")
+
+
+# PerlinNoise
