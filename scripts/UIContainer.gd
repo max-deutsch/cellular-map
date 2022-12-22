@@ -1,6 +1,8 @@
 extends HBoxContainer
 
 onready var createMapButton = $"CreateMapButton"
+onready var map = $"../MapViewportContainer/Viewport/Map"
+onready var mapGen = $"../MapGenViewportContainer/Viewport/RootControl"
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -18,3 +20,6 @@ func _ready():
 
 func on_create_map():
 	print("on_create_map")
+	var texture: Texture = mapGen.getTexture()
+	map.fillFromTexture(texture)
+	

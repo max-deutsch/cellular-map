@@ -13,16 +13,16 @@ mouse_filter = 1
 margin_right = 1000.0
 margin_bottom = 1028.0
 
-[node name="ViewportContainer" type="ViewportContainer" parent="VBoxContainer"]
+[node name="MapGenViewportContainer" type="ViewportContainer" parent="VBoxContainer"]
 margin_right = 1000.0
 margin_bottom = 500.0
 
-[node name="Viewport" type="Viewport" parent="VBoxContainer/ViewportContainer"]
+[node name="Viewport" type="Viewport" parent="VBoxContainer/MapGenViewportContainer"]
 size = Vector2( 1000, 500 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="RootControl" parent="VBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 1 )]
+[node name="RootControl" parent="VBoxContainer/MapGenViewportContainer/Viewport" instance=ExtResource( 1 )]
 
 [node name="UIContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 504.0
@@ -35,14 +35,14 @@ margin_right = 84.0
 margin_bottom = 20.0
 text = "Create Map"
 
-[node name="ViewportContainer2" type="ViewportContainer" parent="VBoxContainer"]
+[node name="MapViewportContainer" type="ViewportContainer" parent="VBoxContainer"]
 margin_top = 528.0
 margin_right = 1000.0
 margin_bottom = 1028.0
 
-[node name="Viewport" type="Viewport" parent="VBoxContainer/ViewportContainer2"]
+[node name="Viewport" type="Viewport" parent="VBoxContainer/MapViewportContainer"]
 size = Vector2( 1000, 500 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Map" parent="VBoxContainer/ViewportContainer2/Viewport" instance=ExtResource( 2 )]
+[node name="Map" parent="VBoxContainer/MapViewportContainer/Viewport" instance=ExtResource( 2 )]
