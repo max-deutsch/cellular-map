@@ -36,7 +36,7 @@ func _ready():
 	TreeProbInput.connect("value_changed", self, "on_tree_prob_change")
 	FireProbInput.connect("value_changed", self, "on_fire_prob_change")
 	TargetFPSInput.connect("value_changed", self, "on_target_fps_change")
-	CreateTileMapButton.connect("pressed", self, "_create_tile_map_pressed")
+	# CreateTileMapButton.connect("pressed", self, "_create_tile_map_pressed")
 	
 	ClickThresholdInput.set_value(5.0);
 	TreeProbInput.set_value(0.0);
