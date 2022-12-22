@@ -12,7 +12,6 @@ onready var Time10Step = $"../UIContainer/HBoxContainer/Time10Step"
 onready var Time100Step = $"../UIContainer/HBoxContainer/Time100Step"
 onready var Time1000Step = $"../UIContainer/HBoxContainer/Time1000Step"
 onready var Time10000Step = $"../UIContainer/HBoxContainer/Time10000Step"
-onready var CreateTileMapButton = $"../UIContainer/HBoxContainer/CreateTileMap"
 
 var ms1step = 0
 var ms10step = 0
@@ -124,9 +123,5 @@ func _draw():
 	if valid_mouse_pos:
 		draw_circle(mouse_pos, click_threshold, Color(1.0, 1.0, 1.0, 0.5))
 	
-func _create_tile_map_pressed():
-	var tileMapPopup = Popup
-	print("create_tile_map")
-
 
 # PerlinNoise
